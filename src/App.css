@@ -27,6 +27,12 @@ main {
     width: 100%;
     border-collapse: collapse;
 }
+.err{
+    font-size: 12px ;
+    color: red;
+    margin: 0;
+    padding: 0;
+}
 
 .expense-table select {
     font: inherit;
@@ -105,7 +111,7 @@ main {
     background-color: white;
     border: 1px solid;
     position: absolute;
-    display: none;
+    /* display: none; */
     border-radius: 4px;
     overflow: hidden;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
