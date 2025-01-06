@@ -1,51 +1,59 @@
 import React, { useState } from 'react'
 import ContextMenu from './ContextMenu';
 
-export default function ExpenseTable({ expenses, setExpData }) {
+export default function ExpenseTable({ expenses, setExpData, setInputVal, setEditRowId }) {
   const[rowId, setRowId] = useState('');
   const[menuPosition, setMenuPosition] = useState({});
   const [selectField, setselectField] = useState('');
-
-  const [shortA, setShortA] = useState([]);
-  const [shortD, setShortD] = useState([]);
-
-  const filteredData = expenses.filter((element) => element.category.toLowerCase().includes(selectField));
+  // const [shortA, setShortA] = useState([]);
+  // const [shortD, setShortD] = useState([]);
 
   const sorting =() => {
-    const arr = expenses.sort(function (a, b) {
-      if (a.amount > b.amount) {
-        return 1;
-      }
-      if (a.amount < b.amount) {
-        return -1; // a comes before b
-      }
-      return 0;
-    });
-    setShortA(arr)
-    setShortD([])
+    setExpData((prevState) => [...prevState.sort((a, b) => a.amount - b.amount)]);
+    // const arr = expenses.sort(function (a, b) {
+    //   if (a.amount > b.amount) {
+    //     return 1;
+    //   }
+    //   if (a.amount < b.amount) {
+    //     return -1; // a comes before b
+    //   }
+    //   return 0;
+    // });
+    // setShortA(arr)
+    // setShortD([])
   }
 
   const sortingD =() => {
-
-    const arr = expenses.sort(function (b, a) {
-      if (a.amount > b.amount) {
-        return 1;
-      }
-      if (a.amount < b.amount) {
-        return -1; // a comes before b
-      }
-      return 0;
-    });
-    setShortD(arr)
-    setShortA([])
+    setExpData((prevState) => [...prevState.sort((b, a) => a.amount - b.amount)]);
+    console.log(expenses, 'data')
+    // const arr = expenses.sort(function (b, a) {
+    //   if (a.amount > b.amount) {
+    //     return 1;
+    //   }
+    //   if (a.amount < b.amount) {
+    //     return -1; // a comes before b
+    //   }
+    //   return 0;
+    // });
+    // setShortD(arr)
+    // setShortA([])
   }
 
-  const viewData = filteredData? filteredData : shortA || shortD ;
+  const filteredData = expenses.filter((element) => element.category.toLowerCase().includes(selectField));
 
     return (
       <>
       <div className="exp-table-parent">
-      <ContextMenu ContextMenuPosition = {menuPosition} setMenuPosition={setMenuPosition} setDataList={setExpData} rowId={rowId}/>
+      <ContextMenu 
+      ContextMenuPosition = {menuPosition} 
+      setMenuPosition={setMenuPosition} 
+      setDataList={setExpData} 
+      rowId={rowId} 
+      setInputValForContxtMenu={setInputVal} 
+      expenses={expenses}
+      setEditRowId={setEditRowId}
+      />
+
       <table className="expense-table" onClick={() => setMenuPosition({})}>
         <thead>
           <tr>
@@ -86,7 +94,7 @@ export default function ExpenseTable({ expenses, setExpData }) {
           </tr>
         </thead>
         <tbody>
-          {viewData.map(({ id, title, category, amount }) => (
+          {filteredData.map(({ id, title, category, amount }) => (
             <tr key={id}   
             onContextMenu={(e) =>{
               e.preventDefault(); 
@@ -96,6 +104,7 @@ export default function ExpenseTable({ expenses, setExpData }) {
               setMenuPosition({ top: e.clientY + 50, left: e.clientX });
               // contextMenu.style.display
               setRowId(id);
+    
             }}
             >
               <td>{title}</td>

@@ -23,4 +23,16 @@ export default [
         category: 'Bills',
         amount: 40,
     },
+    {
+        id: crypto.randomUUID(),
+        title: 'Course Fee',
+        category: 'Education',
+        amount: 98,
+    },
+    {
+        id: crypto.randomUUID(),
+        title: 'medicine 1',
+        category: 'medicine',
+        amount: 27,
+    },
 ]

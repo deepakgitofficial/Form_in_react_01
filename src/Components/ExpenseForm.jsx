@@ -1,15 +1,10 @@
-import React, { useState } from 'react'
+import React, { createContext, useState } from 'react'
 import TextField from '../InputFields/TextField'
 import { SelectField } from '../InputFields/SelectField'
 
-export default function ExpenseForm({ setExpData }) {
-  const [inputVal, setInputVal] = useState({
-    title: '',
-    category: '',
-    amount: ''
-  })
-  const [warn, setWarn] = useState({})
+export default function ExpenseForm({ setExpData, inputVal, setInputVal, editRowId, setEditRowId }) {
 
+  const [warn, setWarn] = useState({})
   // --------form-valitation----------
   const validConfig = {
     title: [
@@ -21,11 +16,8 @@ export default function ExpenseForm({ setExpData }) {
   }
 
   function validateFun(vParameter) {
-
     const errData = {}
-
     const arr1 = Object.entries(vParameter);
-
     arr1.forEach(([key, value]) => {
 
       validConfig[key].some((rule) => {
@@ -48,6 +40,25 @@ export default function ExpenseForm({ setExpData }) {
     const validateResult = validateFun(inputVal)
     // console.log(validateResult)
     if (Object.keys(validateResult).length) return
+
+
+    if (editRowId) {
+
+ setExpData((prevState) => {
+      return prevState.map((el) => {
+        if (el.id === editRowId) {
+          return { ...inputVal, id: editRowId }
+        }
+        return el
+      })
+    })
+      setEditRowId('')
+      setInputVal({ title: '', category: '', amount: '' })
+      return;
+    }
+
+
+
 
     setExpData((prevState) => [
       ...prevState,
@@ -74,6 +85,7 @@ export default function ExpenseForm({ setExpData }) {
         error={warn.title}
         errClass="err"
         value={inputVal.title}
+        type={'text'}
       />
 
       <SelectField
@@ -84,7 +96,8 @@ export default function ExpenseForm({ setExpData }) {
         error={warn.category}
         errClass="err"
         value={inputVal.category}
-
+        categroyOption ={['grocery', 'clothes', 'bills', 'education', 'medicine']}
+        defalultOption='Select Category'
       />
 
       <TextField
@@ -95,8 +108,9 @@ export default function ExpenseForm({ setExpData }) {
         error={warn.amount}
         errClass="err"
         value={inputVal.amount}
+        type='number'
       />
-      <button className="add-btn">Add</button>
+      <button className="add-btn" >{editRowId? 'save': 'Add New'}</button>
     </form>
   )
 }
