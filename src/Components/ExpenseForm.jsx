@@ -76,6 +76,10 @@ export default function ExpenseForm({ setExpData, inputVal, setInputVal, editRow
   }
 
   return (
+    <>
+    <div>
+ 
+    <h2>Expanse Form</h2>
     <form className="expense-form" onSubmit={handleSubmit}>
       <TextField
         id='title'
@@ -112,5 +116,8 @@ export default function ExpenseForm({ setExpData, inputVal, setInputVal, editRow
       />
       <button className="add-btn" >{editRowId? 'save': 'Add New'}</button>
     </form>
+         
+    </div>
+    </>
   )
 }
