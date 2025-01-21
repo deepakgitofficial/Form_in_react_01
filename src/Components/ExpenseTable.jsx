@@ -1,15 +1,22 @@
-import React, { useState } from 'react'
-import ContextMenu from './ContextMenu';
+import React, { useState } from "react";
+import ContextMenu from "./ContextMenu";
 
-export default function ExpenseTable({ expenses, setExpData, setInputVal, setEditRowId }) {
-  const [rowId, setRowId] = useState('');
+export default function ExpenseTable({
+  expenses,
+  setExpData,
+  setInputVal,
+  setEditRowId,
+}) {
+  const [rowId, setRowId] = useState("");
   const [menuPosition, setMenuPosition] = useState({});
-  const [selectField, setselectField] = useState('');
+  const [selectField, setselectField] = useState("");
   // const [shortA, setShortA] = useState([]);
   // const [shortD, setShortD] = useState([]);
 
   const sorting = () => {
-    setExpData((prevState) => [...prevState.sort((a, b) => a.amount - b.amount)]);
+    setExpData((prevState) => [
+      ...prevState.sort((a, b) => a.amount - b.amount),
+    ]);
     // const arr = expenses.sort(function (a, b) {
     //   if (a.amount > b.amount) {
     //     return 1;
@@ -21,11 +28,13 @@ export default function ExpenseTable({ expenses, setExpData, setInputVal, setEdi
     // });
     // setShortA(arr)
     // setShortD([])
-  }
+  };
 
   const sortingD = () => {
-    setExpData((prevState) => [...prevState.sort((b, a) => a.amount - b.amount)]);
-    console.log(expenses, 'data')
+    setExpData((prevState) => [
+      ...prevState.sort((b, a) => a.amount - b.amount),
+    ]);
+    console.log(expenses, "data");
     // const arr = expenses.sort(function (b, a) {
     //   if (a.amount > b.amount) {
     //     return 1;
@@ -37,9 +46,11 @@ export default function ExpenseTable({ expenses, setExpData, setInputVal, setEdi
     // });
     // setShortD(arr)
     // setShortA([])
-  }
+  };
 
-  const filteredData = expenses.filter((element) => element.category.toLowerCase().includes(selectField));
+  const filteredData = expenses.filter((element) =>
+    element.category.toLowerCase().includes(selectField)
+  );
   return (
     <>
       <div className="exp-table-parent">
@@ -53,14 +64,19 @@ export default function ExpenseTable({ expenses, setExpData, setInputVal, setEdi
           setEditRowId={setEditRowId}
         />
 
-        <h2 className='text-center pb-3 text-lg'>Expense Record</h2>
+        <h2 className="text-center pb-3 text-lg">Expense Record</h2>
         <table className="expense-table" onClick={() => setMenuPosition({})}>
           <thead>
             <tr>
               <th>Title</th>
               <th>
-                <select value={selectField} onChange={(e) => setselectField(e.target.value.toLowerCase())} >
-                  <option value="" hidden>Categroy</option>
+                <select
+                  value={selectField}
+                  onChange={(e) => setselectField(e.target.value.toLowerCase())}
+                >
+                  <option value="" hidden>
+                    Categroy
+                  </option>
                   <option value="grocery">Grocery</option>
                   <option value="clothes">Clothes</option>
                   <option value="bills">Bills</option>
@@ -71,7 +87,9 @@ export default function ExpenseTable({ expenses, setExpData, setInputVal, setEdi
               <th className="amount-column">
                 <div>
                   <span>Amount</span>
-                  <svg style={{ cursor: "pointer" }} onClick={sorting}
+                  <svg
+                    style={{ cursor: "pointer" }}
+                    onClick={sorting}
                     xmlns="http://www.w3.org/2000/svg"
                     width="10"
                     viewBox="0 0 384 512"
@@ -80,7 +98,8 @@ export default function ExpenseTable({ expenses, setExpData, setInputVal, setEdi
                     <title>Ascending</title>
                     <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
                   </svg>
-                  <svg onClick={sortingD}
+                  <svg
+                    onClick={sortingD}
                     xmlns="http://www.w3.org/2000/svg"
                     width="10"
                     viewBox="0 0 384 512"
@@ -95,7 +114,8 @@ export default function ExpenseTable({ expenses, setExpData, setInputVal, setEdi
           </thead>
           <tbody>
             {filteredData.map(({ id, title, category, amount }) => (
-              <tr key={id}
+              <tr
+                key={id}
                 onContextMenu={(e) => {
                   e.preventDefault();
                   // const contextMenu = document.querySelector('.context-menu');
@@ -104,7 +124,6 @@ export default function ExpenseTable({ expenses, setExpData, setInputVal, setEdi
                   setMenuPosition({ top: e.clientY + 10, left: e.clientX });
                   // contextMenu.style.display
                   setRowId(id);
-
                 }}
               >
                 <td>{title}</td>
@@ -115,13 +134,20 @@ export default function ExpenseTable({ expenses, setExpData, setInputVal, setEdi
             <tr>
               <th>Total</th>
               <th></th>
-              {/* Calculate total amount */
-                <th>₹{filteredData.reduce((acc, { amount }) => acc + parseInt(amount), 0)}</th>
+              {
+                /* Calculate total amount */
+                <th>
+                  ₹
+                  {filteredData.reduce(
+                    (acc, { amount }) => acc + parseInt(amount),
+                    0
+                  )}
+                </th>
               }
             </tr>
           </tbody>
         </table>
       </div>
     </>
-  )
+  );
 }

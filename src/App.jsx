@@ -20,7 +20,6 @@ function App() {
   // const [localData, setLocalData] = LocalStorage('myVal', [1, 2, 3]);
   return (
     <main>
-    
       {/* <p>{localData.join()}</p> */}
       {/* <button style={{ background: 'gray' }}
         onClick={() => {  
@@ -29,7 +28,7 @@ function App() {
         setLocalData
       </button> */}
       <div className="container">
-      <h1 className="text-center py-10">Track Your Expense</h1>
+      <h1 className="text-center py-10">Track Your Expenses</h1>
         <div className="flex md:flex-row flex-col px-5 gap-10">
           <div className="basis-1/2 bg-gray-50 py-10 px-10">
             <ExpenseForm

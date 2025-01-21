@@ -1,17 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Nunito:wght@300;400;600;700;800;900&family=Russo+One&family=Spartan:wght@700;800;900&display=swap");
 
 body {
-    font-family:  "Nunito", sans-serif;
+    font-family: "Nunito", sans-serif;
     /* margin: 0 32px; */
 }
-#root{
+
+#root {
     width: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     height: 100vh;
 }
-.container{
+
+.container {
     max-width: 1320px;
     margin: 0 auto;
 }
@@ -37,9 +39,26 @@ main {
 .expense-table {
     width: 100%;
     border-collapse: collapse;
+
 }
-.err{
-    font-size: 12px ;
+
+.expense-table tr:nth-child(2n) {
+    background-color: #82a0c8;
+    color: #ffffff;
+}
+
+.expense-table tr:nth-last-child(1) {
+    background-color: #f9fafb !important;
+    /* color: #ffffff; */
+    color: #000;
+}
+
+.expense-table thead tr {
+    background-color: #f1f7f9;
+}
+
+.err {
+    font-size: 12px;
     color: red;
     margin: 0;
     padding: 0;
@@ -83,7 +102,7 @@ main {
 
 .expense-table th,
 .expense-table td {
-    border: 1px solid #444;
+    /* border: 1px solid #444; */
     text-align: left;
     padding: 4px 8px;
 }
@@ -98,13 +117,15 @@ main {
     font-size: 14px;
 }
 
-.input-container input, .input-container select{
+.input-container input,
+.input-container select {
     /* height: 28px; */
     font-family: inherit;
     padding: 8px 16px;
     border: 1px solid rgb(150, 1, 65);
 }
-.expense-table select{
+
+.expense-table select {
     background-color: inherit;
 }
 
@@ -115,7 +136,7 @@ main {
 
 
 .add-btn {
-    width: 100%;  
+    width: 100%;
     padding: 10px;
     font-size: 15px;
     font-family: inherit;
@@ -146,6 +167,7 @@ main {
 .context-menu div:hover {
     background-color: #ddd;
 }
+
 /* @media (max-width: 900px) {
     body {
         margin-inline: 16px;

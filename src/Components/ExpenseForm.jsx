@@ -38,7 +38,6 @@ export default function ExpenseForm({
     setWarn(errData);
     return errData;
   }
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const validateResult = validateFun(inputVal);
@@ -76,7 +75,7 @@ export default function ExpenseForm({
   return (
     <>
       <div>
-      <h2 className='text-center pb-3 text-lg'>Expence Form</h2>
+        <h2 className="text-center pb-3 text-lg">Expence Form</h2>
         <form className="expense-form" onSubmit={handleSubmit}>
           <TextField
             id="title"
@@ -98,11 +97,11 @@ export default function ExpenseForm({
             errClass="err"
             value={inputVal.category}
             categroyOption={[
-              "grocery",
-              "clothes",
-              "bills",
-              "education",
-              "medicine",
+              "Grocery",
+              "Clothes",
+              "Bills",
+              "Education",
+              "Trevel",
             ]}
             defalultOption="Select Category"
           />
