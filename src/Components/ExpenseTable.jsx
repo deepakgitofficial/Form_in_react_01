@@ -53,14 +53,14 @@ export default function ExpenseTable({ expenses, setExpData, setInputVal, setEdi
           setEditRowId={setEditRowId}
         />
 
-        <h2>Expense Table</h2>
+        <h2 className='text-center pb-3 text-lg'>Expense Record</h2>
         <table className="expense-table" onClick={() => setMenuPosition({})}>
           <thead>
             <tr>
               <th>Title</th>
               <th>
                 <select value={selectField} onChange={(e) => setselectField(e.target.value.toLowerCase())} >
-                  <option value="" hidden>All</option>
+                  <option value="" hidden>Categroy</option>
                   <option value="grocery">Grocery</option>
                   <option value="clothes">Clothes</option>
                   <option value="bills">Bills</option>
@@ -101,7 +101,7 @@ export default function ExpenseTable({ expenses, setExpData, setInputVal, setEdi
                   // const contextMenu = document.querySelector('.context-menu');
                   // contextMenu.style.top = `${e.clientY + 30}px`;
                   // contextMenu.style.left = `${e.clientX -10}px`;
-                  setMenuPosition({ top: e.clientY + 50, left: e.clientX });
+                  setMenuPosition({ top: e.clientY + 10, left: e.clientX });
                   // contextMenu.style.display
                   setRowId(id);
 
