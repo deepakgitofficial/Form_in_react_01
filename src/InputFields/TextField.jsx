@@ -12,6 +12,5 @@ const TextField = ({id, name, label, onChangeFun, error, errClass, value ,type})
     </div> 
     </>
   )
-}
-
+} 
 export default TextField

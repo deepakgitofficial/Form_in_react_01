@@ -4,14 +4,13 @@ import ExpenseForm from "./Components/ExpenseForm";
 import ExpenseTable from "./Components/ExpenseTable";
 import expenseData from "./expenseData";
 import { LocalStorage } from "./Components/LocalStorate";
-import Demo from "./Components/Demo";
+// import Demo from "./Components/Demo";
 // import { DataProvider } from './ContextAPI'
 // import Demo from './Components/Demo'
 
 function App() {
   const [expenses, setExpenses] = LocalStorage("expenses", expenseData);
   const [editRowId, setEditRowId] = LocalStorage("isEditRow", "");
-
   const [inputVal, setInputVal] = LocalStorage("inputVal", {
     title: "",
     category: "",
